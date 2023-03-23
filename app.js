@@ -24,5 +24,4 @@ app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
 app.use('/', require('./routes/nonexistent'));
 
-app.use(express.static(path.join(__dirname, 'public')));
 app.listen(PORT);
