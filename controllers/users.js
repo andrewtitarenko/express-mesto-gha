@@ -59,7 +59,8 @@ module.exports.updateProfile = (req, res) => {
     { name, about },
     {
       new: true,
-      runValidators: true
+      runValidators: true,
+      upsert: true,
     },
   )
     .then((user) => {
@@ -75,10 +76,6 @@ module.exports.updateProfile = (req, res) => {
       if (err instanceof mongoose.Error.CastError) {
         res.status(Constants.BAD_REQUEST).send({
           message: Constants.INVALID_USER_ID,
-        });
-      } else {
-        res.status(Constants.INTERNAL_SERVER_ERROR).send({
-        message: Constants.SERVER_ERROR,
         });
       }
       if (err instanceof mongoose.Error.ValidationError) {
@@ -102,6 +99,7 @@ module.exports.updateAvatar = (req, res) => {
     {
       new: true,
       runValidators: true,
+      upsert: true,
     },
   )
     .then((user) => {
@@ -117,10 +115,6 @@ module.exports.updateAvatar = (req, res) => {
       if (err instanceof mongoose.Error.CastError) {
         res.status(Constants.BAD_REQUEST).send({
           message: Constants.INVALID_USER_ID,
-        });
-      } else {
-        res.status(Constants.INTERNAL_SERVER_ERROR).send({
-          message: Constants.SERVER_ERROR,
         });
       }
       if (err instanceof mongoose.Error.ValidationError) {
